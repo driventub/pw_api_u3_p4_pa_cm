@@ -14,8 +14,22 @@ public class EstudianteServiceImpl implements IEstudianteService{
 
     @Override
     public Estudiante consultarPorCedula(String cedula) {
-        // TODO Auto-generated method stub
         return this.estuRepo.consultarPorCedula(cedula);
+    }
+
+    @Override
+    public void insertarEstudianteService(Estudiante e) {
+        this.estuRepo.insertarEstudiante(e);
+    }
+
+    @Override
+    public void actualizarEstudianteService(Estudiante e) {
+        this.estuRepo.actualizarEstudiante(e);
+    }
+
+    @Override
+    public void eliminarEstudianteService(String cedula) {
+        this.estuRepo.eliminarEstudiante(cedula);
     }
     
 }
