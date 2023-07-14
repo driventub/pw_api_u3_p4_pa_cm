@@ -1,5 +1,7 @@
 package uce.edu.unidad3.pw_u3_p4_pa_cm.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +33,21 @@ public class EstudianteServiceImpl implements IEstudianteService{
     public void eliminarEstudianteService(String cedula) {
         this.estuRepo.eliminarEstudiante(cedula);
     }
+
+    @Override
+    public void borrar(Integer id) {
+        this.estuRepo.borrar(id);
+    }
+
+    @Override
+    public void actualizarCedula(String cedulaActual, String cedulaNueva) {
+       this.estuRepo.actualizaParcial(cedulaActual, cedulaNueva);
+    }
+
+    @Override
+    public List<Estudiante> buscarTodos(String provincia) {
+       return this.estuRepo.buscarTodos(provincia);
+    }
     
+
 }
