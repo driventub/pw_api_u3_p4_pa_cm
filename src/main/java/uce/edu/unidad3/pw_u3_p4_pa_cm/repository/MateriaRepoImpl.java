@@ -28,4 +28,21 @@ public class MateriaRepoImpl implements IMateriaRepo {
         this.em.persist(m);    
     }
 
+        @Override
+    public void actualizarMateria(Materia e) {
+        this.em.merge(e);
+    }
+
+    @Override
+    public void borrar(Integer id) {
+
+        this.em.remove(this.buscarPorId(id));
+    }
+
+    
+    public Materia buscarPorId(Integer id){
+        return this.em.find(Materia.class, id);
+    }
+
+
 }

@@ -23,4 +23,16 @@ public class MateriaServiceImpl implements IMateriaService{
         this.materiaRepo.insertarMateria(m);
     }
     
+    @Override
+    public void actualizarMateria(Materia e) {
+        this.materiaRepo.actualizarMateria(e);
+    }
+
+    @Override
+    public void borrar(Integer id) {
+        this.materiaRepo.borrar(id);
+    }
+
+   
+
 }
