@@ -78,4 +78,12 @@ public class EstudianteRepoImpl implements IEstudianteRepo{
 
 		return myQuery.getResultList();
     }
+
+    @Override
+    public List<Estudiante> buscarTodos() {
+       TypedQuery<Estudiante> myQuery = this.em
+				.createQuery("SELECT a FROM Estudiante a  ", Estudiante.class);
+
+		return myQuery.getResultList();
+    }
 }

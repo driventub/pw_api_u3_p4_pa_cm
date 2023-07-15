@@ -28,18 +28,24 @@ public class EstudianteControllerRestFul {
     // private Estudiante consultarPorCedula(String estudiante){
     //     return this.estudianteService.consultarPorCedula(estudiante);
     // }
-    @GetMapping(path = "/buscar/{cedula}")
+    @GetMapping(path = "/{cedula}")
     public Estudiante consultarPorCedula(@PathVariable String cedula){
         // String cedula = "12345690870";
         return this.estudianteService.consultarPorCedula(cedula);
     }
 
-    @PostMapping(path = "/ingresar")
+    @PostMapping
     public void ingresarEstudiante(@RequestBody Estudiante estu){
         this.estudianteService.insertarEstudianteService(estu);
     }
 
-    @PutMapping(path = "/actualizar/{id}")
+    @GetMapping
+    public List<Estudiante> buscarTodos(){
+        
+        return this.estudianteService.buscarTodos();
+    }
+    
+    @PutMapping(path = "/{id}")
     public void actualizarEstudiante(@RequestBody Estudiante estu, @PathVariable Integer id){
         // Integer id = 1;
         estu.setId(id);
@@ -48,7 +54,7 @@ public class EstudianteControllerRestFul {
         this.estudianteService.actualizarEstudianteService(estu);
     }
 
-    @PatchMapping(path = "/actualizaParcial/{cedula}")
+    @PatchMapping(path = "/{cedula}")
     public void actualizarParcialEstudiante(@RequestBody Estudiante estu, @PathVariable String cedula ){
         // Integer id = 1;
         
@@ -57,21 +63,22 @@ public class EstudianteControllerRestFul {
         this.estudianteService.actualizarEstudianteService(estu1);
     }
 
-    @DeleteMapping(path = "/borrar/{id}")
-    public void borrarCedula(@PathVariable Integer id){
-        // Integer idd = 2;
-        this.estudianteService.borrar(id);
-    }
+    // @DeleteMapping(path = "/{id}")
+    // public void borrarId(@PathVariable Integer id){
+    //     // Integer idd = 2;
+    //     this.estudianteService.borrar(id);
+    // }
 
-    @DeleteMapping(path = "/eliminarCedula")
-    public void borrarId(String cedula){
+    @DeleteMapping(path = "/{cedula}")
+    public void borrarCedula(@PathVariable String cedula){
         this.estudianteService.eliminarEstudianteService(cedula);
     }
 
-    @GetMapping(path = "/buscarTodos")
-    public List<Estudiante> buscarTodos(@RequestParam String provincia){
-        // buscarTodos?provincia = pichincha
-        return this.estudianteService.buscarTodos(provincia);
-    }
+    // @GetMapping(path = "/{provincia}")
+    // public List<Estudiante> buscarTodos(@RequestParam String provincia){
+    //     // buscarTodos?provincia = pichincha
+    //     return this.estudianteService.buscarTodos(provincia);
+    // }
+    
     
 }

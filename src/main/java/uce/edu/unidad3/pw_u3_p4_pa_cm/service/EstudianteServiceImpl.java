@@ -49,5 +49,10 @@ public class EstudianteServiceImpl implements IEstudianteService{
        return this.estuRepo.buscarTodos(provincia);
     }
     
+    @Override
+    public List<Estudiante> buscarTodos() {
+       return this.estuRepo.buscarTodos();
+    }
+    
 
 }

@@ -13,4 +13,5 @@ public interface IEstudianteService {
     public void borrar(Integer id);
     public void actualizarCedula(String cedulaActual, String cedulaNueva);
     List<Estudiante> buscarTodos(String provincia);
+    List<Estudiante> buscarTodos();
 }
