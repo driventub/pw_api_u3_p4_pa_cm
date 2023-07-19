@@ -38,7 +38,8 @@ public class HorarioController {
         // Integer id = 1;
 
         Horario hora1 = this.horaService.consultarPorCodigo(codigo);
-        hora1.setCodigo(hora.getCodigo());
+        hora1.setPeriodo(hora.getPeriodo());
+
         this.horaService.actualizarHorario(hora1);
     }
 
@@ -51,7 +52,7 @@ public class HorarioController {
     }
 
     @DeleteMapping(path = "/{codigo}")
-    public void borrarPorCodigo(String codigo) {
+    public void borrarPorCodigo(@PathVariable String codigo) {
         this.horaService.eliminarHorario(codigo);
     }
 

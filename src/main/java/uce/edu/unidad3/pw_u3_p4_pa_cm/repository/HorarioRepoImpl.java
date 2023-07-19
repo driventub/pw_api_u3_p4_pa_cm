@@ -17,10 +17,10 @@ public class HorarioRepoImpl implements IHorarioRepo {
     private EntityManager em;
 
     @Override
-    public Horario consultarPorCodigo(String cedula) {
+    public Horario consultarPorCodigo(String codigo) {
         TypedQuery<Horario> myQuery = this.em
-                .createQuery("SELECT a FROM Horario a WHERE a.cedula =:cedula", Horario.class);
-        myQuery.setParameter("cedula", cedula);
+                .createQuery("SELECT a FROM Horario a WHERE a.codigo =:codigo", Horario.class);
+        myQuery.setParameter("codigo", codigo);
         return myQuery.getSingleResult();
 
     }
@@ -31,8 +31,8 @@ public class HorarioRepoImpl implements IHorarioRepo {
     }
 
     @Override
-    public void eliminarHorario(String cedula) {
-        Horario estudBorrado = this.consultarPorCodigo(cedula);
+    public void eliminarHorario(String codigo) {
+        Horario estudBorrado = this.consultarPorCodigo(codigo);
         this.em.remove(estudBorrado);
     }
 
