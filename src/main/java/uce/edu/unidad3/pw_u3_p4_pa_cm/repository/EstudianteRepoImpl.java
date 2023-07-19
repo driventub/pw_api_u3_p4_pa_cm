@@ -1,5 +1,7 @@
 package uce.edu.unidad3.pw_u3_p4_pa_cm.repository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManager;
@@ -42,6 +44,14 @@ public class EstudianteRepoImpl implements IEstudianteRepo{
     public void eliminarEstudiante(String cedula) {
         Estudiante estudBorrado=this.consultarPorCedula(cedula);
         this.em.remove(estudBorrado);    
+    }
+
+    @Override
+    public List<Estudiante> buscarTodos() {
+       TypedQuery<Estudiante> myQuery = this.em
+				.createQuery("SELECT a FROM Estudiante a  ", Estudiante.class);
+
+		return myQuery.getResultList();
     }
     
 }

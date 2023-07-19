@@ -1,5 +1,7 @@
 package uce.edu.unidad3.pw_u3_p4_pa_cm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,31 +27,38 @@ public class EstudianteControllerRestFul {
     // private Estudiante consultarPorCedula(String estudiante){
     //     return this.estudianteService.consultarPorCedula(estudiante);
     // }
-    @GetMapping(path = "/buscar")
-    public Estudiante consultarPorCedula(){
-        String cedula = "12345690870";
+    @GetMapping(path = "/cedula")
+    public Estudiante consultarPorCedula(@PathVariable String cedula){
+        
         return this.estudianteService.consultarPorCedula(cedula);
     }
 
-    @PostMapping(path = "/ingresar")
+    @PostMapping
     public void ingresarEstudiante(@RequestBody Estudiante estu){
         this.estudianteService.insertarEstudianteService(estu);
     }
 
-    @PutMapping(path = "/actualizar")
-    public void actualizarEstudiante(Estudiante estu){
-
-        // this.estudianteService.actualizarEstudianteService(estu);
+    @GetMapping
+    public List<Estudiante> buscarTodos(){
+        return this.estudianteService.buscarTodos();
     }
 
-    @PatchMapping(path = "/actualizaParcial")
-    public void actualizarParcialEstudiante(){
-
+    @PutMapping(path = "/{id}")
+    public void actualizarEstudiante(@RequestBody Estudiante estu,@PathVariable Integer id){
+        estu.setId(id);
+        this.estudianteService.actualizarEstudianteService(estu);
     }
 
-    @DeleteMapping(path = "/eliminar")
-    public void borrarEstudiante(){
+    @PatchMapping(path = "/{cedula}")
+    public void actualizarParcialEstudiante(@RequestBody Estudiante estu, @PathVariable String cedula){
+        Estudiante estu1 = this.estudianteService.consultarPorCedula(cedula);
+        estu1.setCedula(estu.getCedula());
+        this.estudianteService.actualizarEstudianteService(estu1);   
+    }
 
+    @DeleteMapping(path =  "/{cedula}")
+    public void borrarCedula(@PathVariable String cedula){
+        this.estudianteService.eliminarEstudianteService(cedula);
     }
     
 }

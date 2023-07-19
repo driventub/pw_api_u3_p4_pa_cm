@@ -1,5 +1,7 @@
 package uce.edu.unidad3.pw_u3_p4_pa_cm.repository;
 
+import java.util.List;
+
 import uce.edu.unidad3.pw_u3_p4_pa_cm.model.Estudiante;
 
 public interface IEstudianteRepo {
@@ -7,4 +9,5 @@ public interface IEstudianteRepo {
     void insertarEstudiante(Estudiante e);
     void actualizarEstudiante(Estudiante e);
     void eliminarEstudiante(String cedula);
+    List<Estudiante> buscarTodos();
 }
