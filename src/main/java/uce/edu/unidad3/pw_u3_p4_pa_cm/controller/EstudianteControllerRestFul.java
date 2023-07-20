@@ -24,13 +24,8 @@ public class EstudianteControllerRestFul {
     @Autowired
     private IEstudianteService estudianteService;
 
-    // @GetMapping(path = "/{cedula}")
-    // private Estudiante consultarPorCedula(String estudiante){
-    //     return this.estudianteService.consultarPorCedula(estudiante);
-    // }
     @GetMapping(path = "/{cedula}")
     public Estudiante consultarPorCedula(@PathVariable String cedula){
-        // String cedula = "12345690870";
         return this.estudianteService.consultarPorCedula(cedula);
     }
 
@@ -44,6 +39,12 @@ public class EstudianteControllerRestFul {
         
         return this.estudianteService.buscarTodos();
     }
+
+    // @PostMapping
+    // public List<Estudiante> buscarTodos(){
+        
+    //     return this.estudianteService.buscarTodos();
+    // }
     
     @PutMapping(path = "/{id}")
     public void actualizarEstudiante(@RequestBody Estudiante estu, @PathVariable Integer id){
@@ -56,9 +57,12 @@ public class EstudianteControllerRestFul {
 
     @PatchMapping(path = "/{cedula}")
     public void actualizarParcialEstudiante(@RequestBody Estudiante estu, @PathVariable String cedula ){
-        // Integer id = 1;
-        
         Estudiante estu1 = this.estudianteService.consultarPorCedula(cedula);
+
+        if(estu.getNombre()==null){
+
+        }
+
         estu1.setCedula(estu.getCedula());
         this.estudianteService.actualizarEstudianteService(estu1);
     }
