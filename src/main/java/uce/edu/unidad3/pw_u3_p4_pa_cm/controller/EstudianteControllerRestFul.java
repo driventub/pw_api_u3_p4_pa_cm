@@ -3,6 +3,10 @@ package uce.edu.unidad3.pw_u3_p4_pa_cm.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -11,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uce.edu.unidad3.pw_u3_p4_pa_cm.model.Estudiante;
@@ -25,8 +28,19 @@ public class EstudianteControllerRestFul {
     private IEstudianteService estudianteService;
 
     @GetMapping(path = "/{cedula}")
-    public Estudiante consultarPorCedula(@PathVariable String cedula){
-        return this.estudianteService.consultarPorCedula(cedula);
+    
+    public ResponseEntity<Estudiante> consultarPorCedula(@PathVariable String cedula){
+        
+        return ResponseEntity.status(227)
+        .body(this.estudianteService.consultarPorCedula(cedula));
+    }
+
+    @GetMapping(path = "/status/{cedula}")
+    
+    public ResponseEntity<Estudiante> consultarPorCedulaStatus(@PathVariable String cedula){
+        
+        return ResponseEntity.status(HttpStatus.OK)
+        .body(this.estudianteService.consultarPorCedula(cedula));
     }
 
     @PostMapping
@@ -35,9 +49,14 @@ public class EstudianteControllerRestFul {
     }
 
     @GetMapping
-    public List<Estudiante> buscarTodos(){
-        
-        return this.estudianteService.buscarTodos();
+    public ResponseEntity<List<Estudiante>> buscarTodos(){
+        List<Estudiante> lista = this.estudianteService.buscarTodos();
+
+        HttpHeaders cabeceras = new HttpHeaders();
+        cabeceras.add("detalleMensaje", "Ciudadanos consultados exitosamente");
+        cabeceras.add("valorAPI", "No aplicable");
+
+        return new ResponseEntity<List<Estudiante>>(lista, cabeceras, 227) ;
     }
 
     // @PostMapping
