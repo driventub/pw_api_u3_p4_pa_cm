@@ -234,6 +234,9 @@ Nuestra API va a retornar informacion del objeto principal, y de los objetos sec
 Comunmente conocido como HATEOAS
 (hypermedia as the engine of application state)
 
+- Serializar: el paquete tiene que convertirse en 0,1 para  que viaje en la red, y para convertir a objeto es deserializar.
+
+- Representation Model: le da la capacidad de agregar hipermedia. (extendiendo, teniendo la clase TO) 
 
 
 ![RMM](./src/main/resources/static/img/rmm.png)<!-- imagen -->
