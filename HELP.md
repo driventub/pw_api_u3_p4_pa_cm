@@ -229,7 +229,8 @@ formato <------------> MIME
 
 ## Taller 33
 
-3. Manejo de Hipermedia
+- nivlel 3. Manejo de Hipermedia
+
 Nuestra API va a retornar informacion del objeto principal, y de los objetos secundarios deberia retornar un enlace(un enlance de los hijos de un padre)
 Comunmente conocido como HATEOAS
 (hypermedia as the engine of application state)
@@ -238,6 +239,15 @@ Comunmente conocido como HATEOAS
 
 - Representation Model: le da la capacidad de agregar hipermedia. (extendiendo, teniendo la clase TO) 
 
+## Taller 34
+
+- Agregar hipermedia se lo relaciona con agregar un hipervinculo (una capacidad).
+
+- TO es la representacion del modelo.
+
+- La construccion del enlace se realiza por medio de "Link", en funcion de una capacidad existente.
+
+- 
 
 ![RMM](./src/main/resources/static/img/rmm.png)<!-- imagen -->
 

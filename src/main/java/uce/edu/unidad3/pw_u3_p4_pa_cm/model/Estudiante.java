@@ -1,12 +1,15 @@
 package uce.edu.unidad3.pw_u3_p4_pa_cm.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -32,6 +35,8 @@ public class Estudiante {
     @Column(name = "estu_provincia")
     private String provincia;
 
+    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL)
+    private List<Materia> materias;
     
     public LocalDateTime getFechaNacimiento() {
         return fechaNacimiento;
@@ -87,6 +92,14 @@ public class Estudiante {
 
     public void setCedula(String cedula) {
         this.cedula = cedula;
+    }
+
+    public List<Materia> getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(List<Materia> materias) {
+        this.materias = materias;
     }
 
 }

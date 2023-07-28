@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import uce.edu.unidad3.pw_u3_p4_pa_cm.model.Estudiante;
+import uce.edu.unidad3.pw_u3_p4_pa_cm.repository.IMateriaRepo;
 import uce.edu.unidad3.pw_u3_p4_pa_cm.service.IEstudianteService;
+import uce.edu.unidad3.pw_u3_p4_pa_cm.service.IMateriaService;
 import uce.edu.unidad3.pw_u3_p4_pa_cm.service.to.EstudianteTO;
 import uce.edu.unidad3.pw_u3_p4_pa_cm.service.to.MateriaTO;
 
@@ -32,6 +34,9 @@ public class EstudianteControllerRestFul {
 
     @Autowired
     private IEstudianteService estudianteService;
+
+    @Autowired
+    private IMateriaService materiaService;
 
     @GetMapping(path = "/{cedula}", produces = "application/xml")
     @ResponseStatus(HttpStatus.OK)
@@ -81,23 +86,20 @@ public class EstudianteControllerRestFul {
         return this.estudianteService.consultarPorCedula(estu.getCedula());
     }
 
-    @GetMapping
+    @GetMapping ( produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<EstudianteTO>> buscarTodosHATEOAS() {
         List<EstudianteTO> lista = this.estudianteService.buscarTodosH();
         for (EstudianteTO estudianteTO : lista) {
             Link myLink = linkTo(methodOn(EstudianteControllerRestFul.class).buscarPorEstudiante(estudianteTO.getCedula())).withRel("materias");
             estudianteTO.add(myLink);
         }
-        
-        
-
         return new ResponseEntity<>(lista, null, 200);
 
     }
 
     @GetMapping(path = "/{cedula}/materias")
     public ResponseEntity<List<MateriaTO>> buscarPorEstudiante(@PathVariable String cedula) {
-        return null;
+        return new ResponseEntity<List<MateriaTO>>(this.materiaService.buscarPorCedulaEstuService(cedula), null, 200);
     }
 
 }
