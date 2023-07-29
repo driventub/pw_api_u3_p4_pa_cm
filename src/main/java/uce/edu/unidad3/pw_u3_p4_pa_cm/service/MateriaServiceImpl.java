@@ -1,7 +1,6 @@
 package uce.edu.unidad3.pw_u3_p4_pa_cm.service;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +67,13 @@ public class MateriaServiceImpl implements IMateriaService{
     public MateriaTO buscarMateriaIdService(Integer id) {
         Materia m= this.materiaRepo.buscarMateriaId(id);
         return convertir(m);
+    }
+
+    @Override
+    public List<Materia> buscarTodos() {
+       return this.materiaRepo.buscarTodos();
     }  
+
+    
 
 }

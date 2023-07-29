@@ -252,3 +252,12 @@ Comunmente conocido como HATEOAS
 ![RMM](./src/main/resources/static/img/rmm.png)<!-- imagen -->
 
 
+# taller 35
+
+no se puede utilizar el `fetch` con apis que que sean locales, se tiene que usar `axios`
+
+``` bash
+npm install axios
+```
+
+

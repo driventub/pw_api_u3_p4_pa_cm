@@ -3,6 +3,8 @@ package uce.edu.unidad3.pw_u3_p4_pa_cm.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,6 +38,7 @@ public class Estudiante {
     private String provincia;
 
     @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Materia> materias;
     
     public LocalDateTime getFechaNacimiento() {

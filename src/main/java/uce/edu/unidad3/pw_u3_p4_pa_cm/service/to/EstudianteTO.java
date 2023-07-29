@@ -6,7 +6,8 @@ import java.time.LocalDateTime;
 import org.springframework.hateoas.RepresentationModel;
 
 public class EstudianteTO extends RepresentationModel<EstudianteTO> implements Serializable{
-    private static final long serialVersionUId = 1L;
+    
+    private static final long serialVersionUID=1L;
 
     private Integer id;
     private String cedula;

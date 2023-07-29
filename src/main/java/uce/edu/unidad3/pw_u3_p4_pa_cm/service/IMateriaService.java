@@ -12,6 +12,8 @@ public interface IMateriaService {
     public void actualizarMateria(Materia e);
     public void borrar(Integer id);
     public List<MateriaTO> buscarTodosService();
+    public List<Materia> buscarTodos();
     public List<MateriaTO> buscarPorCedulaEstuService(String cedula);
     public MateriaTO buscarMateriaIdService(Integer id);
+    
 }
