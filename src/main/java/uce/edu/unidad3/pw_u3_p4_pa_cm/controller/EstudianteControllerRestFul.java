@@ -37,11 +37,10 @@ public class EstudianteControllerRestFul {
     @Autowired
     private IMateriaService materiaService;
 
-    // @GetMapping(path = "/{cedula}", produces = "application/xml")
-    // @ResponseStatus(HttpStatus.OK)
-    // public Estudiante consultarPorCedula(@PathVariable String cedula) {
-    //     return this.estudianteService.consultarPorCedula(cedula);
-    // }
+    @GetMapping(path = "/{cedula}", produces = "application/json")
+    public Estudiante consultarPorCedula(@PathVariable String cedula) {
+        return this.estudianteService.consultarPorCedula(cedula);
+    }
 
     @PostMapping(consumes = "application/xml")
     public void ingresarEstudiante(@RequestBody Estudiante estu) {
@@ -78,12 +77,12 @@ public class EstudianteControllerRestFul {
         this.estudianteService.eliminarEstudianteService(cedula);
     }
 
-    @GetMapping(path = "/{cedula}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = "application/json")
-    public Estudiante ingresarEstudiantePersonalizado(@PathVariable String cedula, @RequestBody Estudiante estu) {
-        estu.setCedula(cedula);
-        this.estudianteService.insertarEstudianteService(estu);
-        return this.estudianteService.consultarPorCedula(estu.getCedula());
-    }
+    // @GetMapping(path = "/{cedula}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = "application/json")
+    // public Estudiante ingresarEstudiantePersonalizado(@PathVariable String cedula, @RequestBody Estudiante estu) {
+    //     estu.setCedula(cedula);
+    //     this.estudianteService.insertarEstudianteService(estu);
+    //     return this.estudianteService.consultarPorCedula(estu.getCedula());
+    // }
 
     // @GetMapping ( produces = MediaType.APPLICATION_JSON_VALUE)
     // public ResponseEntity<List<Estudiante>> buscarTodos() {
