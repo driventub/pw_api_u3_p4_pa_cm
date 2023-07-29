@@ -111,7 +111,7 @@ public class EstudianteControllerRestFul {
     public ResponseEntity<List<MateriaTO>> buscarPorEstudiante(@PathVariable String cedula) {
         List<MateriaTO> lista = this.materiaService.buscarPorCedulaEstuService(cedula);
         for (MateriaTO materiaTO : lista) {
-            Link myLink = linkTo(methodOn(MateriaController.class).consultarConCedula(materiaTO.getId())).withRel("algo");
+            Link myLink = linkTo(methodOn(MateriaController.class).consultarMateria(materiaTO.getId())).withRel("{id}");
             materiaTO.add(myLink);
         }
         return new ResponseEntity<List<MateriaTO>>(lista, null, 200);
