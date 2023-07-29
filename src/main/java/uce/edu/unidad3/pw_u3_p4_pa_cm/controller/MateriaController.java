@@ -31,7 +31,7 @@ public class MateriaController {
     @Autowired
     private IMateriaService materiaService;
     
-    @GetMapping()
+    @GetMapping
     public List<MateriaTO> consultarMateria(){
         return this.materiaService.buscarTodosService();
     }
@@ -47,12 +47,12 @@ public class MateriaController {
         return new ResponseEntity<>(m, null, 0);
     }
 
-    @PostMapping(path = "/ingresar")
+    @PostMapping
     public void ingresarMateria(@RequestBody Materia mate){
         this.materiaService.ingresarMateria(mate);
     }
 
-    @PutMapping(path = "/actualizar/{id}")
+    @PutMapping
     public void actualizarMateria(@RequestBody Materia materia, @PathVariable Integer id){
         
         materia.setId(id);
@@ -61,7 +61,7 @@ public class MateriaController {
         this.materiaService.actualizarMateria(materia);
     }
 
-    @DeleteMapping(path = "/borrar/{id}")
+    @DeleteMapping
     public void borrarCedula(@PathVariable Integer id){
         // Integer idd = 2;
         this.materiaService.borrar(id);

@@ -38,11 +38,11 @@ public class EstudianteControllerRestFul {
     @Autowired
     private IMateriaService materiaService;
 
-    @GetMapping(path = "/{cedula}", produces = "application/xml")
-    @ResponseStatus(HttpStatus.OK)
-    public Estudiante consultarPorCedula(@PathVariable String cedula) {
-        return this.estudianteService.consultarPorCedula(cedula);
-    }
+    // @GetMapping(path = "/{cedula}", produces = "application/xml")
+    // @ResponseStatus(HttpStatus.OK)
+    // public Estudiante consultarPorCedula(@PathVariable String cedula) {
+    //     return this.estudianteService.consultarPorCedula(cedula);
+    // }
 
     @PostMapping(consumes = "application/xml")
     public void ingresarEstudiante(@RequestBody Estudiante estu) {
@@ -86,6 +86,16 @@ public class EstudianteControllerRestFul {
         return this.estudianteService.consultarPorCedula(estu.getCedula());
     }
 
+    // @GetMapping ( produces = MediaType.APPLICATION_JSON_VALUE)
+    // public ResponseEntity<List<EstudianteTO>> buscarTodosHATEOAS() {
+    //     List<EstudianteTO> lista = this.estudianteService.buscarTodosH();
+    //     for (EstudianteTO estudianteTO : lista) {
+    //         Link myLink = linkTo(methodOn(EstudianteControllerRestFul.class).buscarPorEstudiante(estudianteTO.getCedula())).withRel("materias");
+    //         estudianteTO.add(myLink);
+    //     }
+    //     return new ResponseEntity<>(lista, null, 200);
+
+    // }
     @GetMapping ( produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<EstudianteTO>> buscarTodosHATEOAS() {
         List<EstudianteTO> lista = this.estudianteService.buscarTodosH();
@@ -97,9 +107,16 @@ public class EstudianteControllerRestFul {
 
     }
 
-    @GetMapping(path = "/{cedula}/materias")
+    @GetMapping(path = "/{cedula}/materias", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<MateriaTO>> buscarPorEstudiante(@PathVariable String cedula) {
-        return new ResponseEntity<List<MateriaTO>>(this.materiaService.buscarPorCedulaEstuService(cedula), null, 200);
+        List<MateriaTO> lista = this.materiaService.buscarPorCedulaEstuService(cedula);
+        for (MateriaTO materiaTO : lista) {
+            Link myLink = linkTo(methodOn(MateriaController.class).consultarConCedula(materiaTO.getId())).withRel("algo");
+            materiaTO.add(myLink);
+        }
+        return new ResponseEntity<List<MateriaTO>>(lista, null, 200);
     }
+
+
 
 }
