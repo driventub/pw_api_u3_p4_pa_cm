@@ -1,6 +1,7 @@
 package uce.edu.unidad3.pw_u3_p4_pa_cm.service;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,12 @@ public class EstudianteServiceImpl implements IEstudianteService{
 
     @Override
     public void insertarEstudianteService(Estudiante e) {
+        try {
+            TimeUnit.SECONDS.sleep(20);
+        } catch (InterruptedException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
         this.estuRepo.insertarEstudiante(e);
     }
 

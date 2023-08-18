@@ -254,7 +254,7 @@ Comunmente conocido como HATEOAS
 
 # taller 35
 
-no se puede utilizar el `fetch` con apis que que sean locales, se tiene que usar `axios`
+- no se puede utilizar el `fetch` con apis que que sean locales, se tiene que usar `axios`
 
 ``` bash
 npm install axios

@@ -42,7 +42,7 @@ public class EstudianteControllerRestFul {
         return this.estudianteService.consultarPorCedula(cedula);
     }
 
-    @PostMapping(consumes = "application/xml")
+    @PostMapping(consumes = "application/json")
     public void ingresarEstudiante(@RequestBody Estudiante estu) {
         this.estudianteService.insertarEstudianteService(estu);
     }
