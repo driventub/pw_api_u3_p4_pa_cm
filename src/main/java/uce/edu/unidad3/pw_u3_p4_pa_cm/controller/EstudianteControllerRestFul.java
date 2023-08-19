@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import uce.edu.unidad3.pw_u3_p4_pa_cm.model.Estudiante;
 import uce.edu.unidad3.pw_u3_p4_pa_cm.repository.IMateriaRepo;
 import uce.edu.unidad3.pw_u3_p4_pa_cm.service.IEstudianteService;
@@ -29,6 +30,7 @@ import uce.edu.unidad3.pw_u3_p4_pa_cm.service.to.EstudianteTO;
 import uce.edu.unidad3.pw_u3_p4_pa_cm.service.to.MateriaTO;
 
 @RestController
+@Tag(name = "Estudiantes", description = "Api de manejo de estudiantes")
 @RequestMapping(path = "/estudiantes")
 public class EstudianteControllerRestFul {
 
