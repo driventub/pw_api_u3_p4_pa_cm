@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import uce.edu.unidad3.pw_u3_p4_pa_cm.model.Estudiante;
 import uce.edu.unidad3.pw_u3_p4_pa_cm.service.IEstudianteService;
 import uce.edu.unidad3.pw_u3_p4_pa_cm.service.IMateriaService;
@@ -27,6 +28,7 @@ import uce.edu.unidad3.pw_u3_p4_pa_cm.service.to.EstudianteTO;
 import uce.edu.unidad3.pw_u3_p4_pa_cm.service.to.MateriaTO;
 
 @RestController
+@Tag(name = "Usuarios", description = "Operaciones con usuarios")
 @CrossOrigin("http://localhost:3000/")
 @RequestMapping(path = "/estudiantes")
 public class EstudianteControllerRestFul {
@@ -42,20 +44,10 @@ public class EstudianteControllerRestFul {
         return this.estudianteService.consultarPorCedula(cedula);
     }
 
-    @PostMapping(consumes = "application/xml")
+    @PostMapping(consumes = "application/json")
     public void ingresarEstudiante(@RequestBody Estudiante estu) {
         this.estudianteService.insertarEstudianteService(estu);
     }
-
-    // @GetMapping
-    // public ResponseEntity<List<Estudiante>> buscarTodos(){
-    // List<Estudiante> lista = this.estudianteService.buscarTodos();
-    // HttpHeaders cabeceras = new HttpHeaders();
-    // cabeceras.add("detalleMensaje", "Ciudadanos consultados exitosamente");
-    // cabeceras.add("valorAPI", "No aplicable");
-
-    // return new ResponseEntity<List<Estudiante>>(lista, cabeceras, 227) ;
-    // }
 
     @PutMapping(path = "/{id}")
     public void actualizarEstudiante(@RequestBody Estudiante estu, @PathVariable Integer id) {
@@ -76,21 +68,7 @@ public class EstudianteControllerRestFul {
     public void borrarCedula(@PathVariable String cedula) {
         this.estudianteService.eliminarEstudianteService(cedula);
     }
-
-    // @GetMapping(path = "/{cedula}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = "application/json")
-    // public Estudiante ingresarEstudiantePersonalizado(@PathVariable String cedula, @RequestBody Estudiante estu) {
-    //     estu.setCedula(cedula);
-    //     this.estudianteService.insertarEstudianteService(estu);
-    //     return this.estudianteService.consultarPorCedula(estu.getCedula());
-    // }
-
-    // @GetMapping ( produces = MediaType.APPLICATION_JSON_VALUE)
-    // public ResponseEntity<List<Estudiante>> buscarTodos() {
-    //     List<Estudiante> lista = this.estudianteService.buscarTodos();
-        
-    //     return new ResponseEntity<>(lista, null, 200);
-
-    // }
+    
     @GetMapping ( produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<EstudianteTO>> buscarTodosHATEOAS() {
         List<EstudianteTO> lista = this.estudianteService.buscarTodosH();
@@ -110,7 +88,5 @@ public class EstudianteControllerRestFul {
         }
         return new ResponseEntity<List<MateriaTO>>(lista, null, 200);
     }
-
-
 
 }
